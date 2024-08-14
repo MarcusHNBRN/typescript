@@ -1,0 +1,41 @@
+.stockTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.stockTable th,
+.stockTable td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+.stockTable th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.stockTable tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.removeButton {
+  padding: 5px 10px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.removeButton:hover {
+  background-color: #d32f2f;
+}
+
+.positive {
+  color: green;
+}
+
+.negative {
+  color: red;
+}

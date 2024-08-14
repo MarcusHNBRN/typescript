@@ -12,7 +12,7 @@ export const StockList: React.FC<StockListProps> = ({
   onRemoveStock,
 }) => {
   return (
-    <table>
+    <table className={styles.stockTable}>
       <thead>
         <tr>
           <th>Symbol</th>
@@ -25,13 +25,19 @@ export const StockList: React.FC<StockListProps> = ({
         {stocks.map((stock) => (
           <tr key={stock.symbol}>
             <td>{stock.symbol}</td>
+            <td>{stock.name}</td>
             <td>${stock.price.toFixed(2)}</td>
-            <td style={{ color: stock.change >= 0 ? "green" : "red" }}>
+            <td
+              className={stock.change >= 0 ? styles.positive : styles.negative}
+            >
               {stock.change >= 0 ? "+" : ""}
               {stock.change.toFixed(2)}%
             </td>
             <td>
-              <button onClick={() => onRemoveStock(stock.symbol)}>
+              <button
+                onClick={() => onRemoveStock(stock.symbol)}
+                className={styles.removeButton}
+              >
                 remove
               </button>
             </td>
