@@ -12,15 +12,19 @@ export const StockSearch: React.FC<StockSearchProps> = ({ onAddStock }) => {
   const [results, setResults] = useState<Stock[]>([]);
   const [loading, setLoading] = useState(false);
   const [showAll, setShowAll] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSearch = async () => {
     if (query.trim()) {
       setLoading(true);
-      setShowAll(false);
+      setError(null);
       try {
+        console.log("Searching for:", query);
         const searchResults = await searchStocks(query);
+        console.log("Search results:", searchResults);
         setResults(searchResults);
       } catch (error) {
+        console.error("Error in handleSearch:", error);
         console.error("Error searching stocks:", error);
       } finally {
         setLoading(false);
@@ -57,6 +61,7 @@ export const StockSearch: React.FC<StockSearchProps> = ({ onAddStock }) => {
       >
         {loading ? "Searching" : "Search"}
       </button>
+      {error && <p className={styles.errorMessage}>{error}</p>}
       <ul className={styles.resultsList}>
         {displayedResults.map((stock) => (
           <li key={stock.symbol} className={styles.resultItem}>
