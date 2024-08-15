@@ -20,48 +20,39 @@ export const StockList: React.FC<StockListProps> = ({
 
   return (
     <div>
-      <table className={styles.stockTable}>
-        <thead>
-          <tr>
-            <th>Symbol</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Change</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {stocks.map((stock) => (
-            <tr key={stock.symbol}>
-              <td>{stock.symbol}</td>
-              <td>{stock.name}</td>
-              <td>${stock.price.toFixed(2)}</td>
-              <td
-                className={
+      <div className={styles.stockGrid}>
+        {stocks.map((stock) => (
+          <div key={stock.symbol} className={styles.stockBox}>
+            <div className={styles.stockInfo}>
+              <div className={styles.stockSymbol}>{stock.symbol}</div>
+              <div className={styles.stockName}>{stock.name}</div>
+              <div className={styles.stockPrice}>${stock.price.toFixed(2)}</div>
+              <div
+                className={`${styles.stockChange} ${
                   stock.change >= 0 ? styles.positive : styles.negative
-                }
+                }`}
               >
                 {stock.change >= 0 ? "+" : ""}
                 {stock.change.toFixed(2)}%
-              </td>
-              <td>
-                <button
-                  onClick={() => onRemoveStock(stock.symbol)}
-                  className={styles.removeButton}
-                >
-                  Remove
-                </button>
-                <button
-                  onClick={() => setSelectedStock(stock.symbol)}
-                  className={styles.viewGraphButton}
-                >
-                  View Graph
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+              </div>
+            </div>
+            <div className={styles.buttonContainer}>
+              <button
+                onClick={() => onRemoveStock(stock.symbol)}
+                className={styles.removeButton}
+              >
+                Remove
+              </button>
+              <button
+                onClick={() => setSelectedStock(stock.symbol)}
+                className={styles.viewGraphButton}
+              >
+                View Graph
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
       {selectedStock && (
         <div className={styles.graphContainer}>
           <div className={styles.graphHeader}>

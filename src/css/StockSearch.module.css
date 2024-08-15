@@ -5,7 +5,9 @@
 .searchInput {
   padding: 10px;
   font-size: 16px;
-  border: 1px solid #ddd;
+  background-color: #2c2c2c;
+  color: #e0e0e0;
+  border: 1px solid #444;
   border-radius: 4px;
   margin-right: 10px;
   width: 60%;
@@ -26,7 +28,7 @@
 }
 
 .searchButton:disabled {
-  background-color: #cccccc;
+  background-color: #555;
   cursor: not-allowed;
 }
 
@@ -37,22 +39,39 @@
 
 .resultItem {
   padding: 10px;
-  border: 1px solid #ddd;
+  background-color: #2c2c2c;
+  border: 1px solid #444;
   margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-radius: 4px;
 }
 
 .addButton {
-  padding: 5px 10px;
-  background-color: #008cba;
+  padding: 8px 12px;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.addButton:hover {
+  background-color: #1976d2;
+}
+
+.toggleResultsButton {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #555;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
 
-.addButton:hover {
-  background-color: #007b9a;
+.toggleResultsButton:hover {
+  background-color: #777;
 }

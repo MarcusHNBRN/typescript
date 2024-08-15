@@ -10,6 +10,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { fetchHistoricalData } from "../api";
+import styles from "../css/StockList.module.css";
 
 interface StockGraphProps {
   symbol: string;
@@ -62,24 +63,26 @@ export const StockGraph: React.FC<StockGraphProps> = ({ symbol }) => {
   const getTickInterval = () => {
     switch (selectedRange.label) {
       case "10Y":
-        return 365; 
+        return 365;
       case "5Y":
-        return 182; 
+        return 182;
       case "1Y":
-        return 30; 
+        return 30;
       default:
         return 7;
     }
   };
 
   return (
-    <div className="stock-graph">
-      <div className="range-buttons">
+    <div className={styles.graphContainer}>
+      <div className={styles.rangeButtons}>
         {timeRanges.map((range) => (
           <button
             key={range.label}
             onClick={() => setSelectedRange(range)}
-            className={selectedRange === range ? "active" : ""}
+            className={`${styles.rangeButton} ${
+              selectedRange === range ? styles.active : ""
+            }`}
           >
             {range.label}
           </button>
@@ -87,15 +90,20 @@ export const StockGraph: React.FC<StockGraphProps> = ({ symbol }) => {
       </div>
       <ResponsiveContainer width="100%" height={300}>
         <LineChart data={data}>
-          <CartesianGrid strokeDasharray="3 3" />
+          <CartesianGrid strokeDasharray="3 3" stroke="#444" />
           <XAxis
             dataKey="date"
             tickFormatter={formatXAxis}
             interval={getTickInterval()}
+            stroke="#e0e0e0"
           />
-          <YAxis />
+          <YAxis stroke="#e0e0e0" />
           <Tooltip
             labelFormatter={(label) => new Date(label).toLocaleDateString()}
+            contentStyle={{
+              backgroundColor: "#2c2c2c",
+              border: "1px solid #444",
+            }}
           />
           <Legend />
           <Line type="monotone" dataKey="price" stroke="#8884d8" />
